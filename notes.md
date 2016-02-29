@@ -40,6 +40,7 @@ topojson -o output.json --id-property adm1_code --properties name=name -- states
 
 ## CSS Generator for HeatMap
 
+```plsql
 begin
 
 for i in (
@@ -57,3 +58,4 @@ loop
     dbms_output.put_line('.' || i.code || ' { fill: rgba(177,23,23,' || i.opacity || '); }');
 end loop;
 end;
+```
