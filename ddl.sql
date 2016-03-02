@@ -75,3 +75,11 @@ where country in
     'Schweiz'
 );
 /
+
+create or replace view v_germany_gender_disparity as
+select year, federal_state, gender, gender_population, population population_total
+from gdb_ger_fs_population
+unpivot (
+    gender_population for gender in (gender_men as 'Male', gender_woman as 'Female')
+);
+/
