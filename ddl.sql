@@ -58,3 +58,20 @@ where country in (
     'Vereinigtes Königreich'
 );
 /
+
+create or replace view v_bordering_population as
+select country, year, population
+from gdb_world_population
+where country in
+(
+    'Belgien',
+    'Niederlande',
+    'Dänemark',
+    'Polen',
+    'Tschechische Republik',
+    'Österreich',
+    'Frankreich',
+    'Luxemburg',
+    'Schweiz'
+);
+/
