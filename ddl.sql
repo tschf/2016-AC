@@ -20,3 +20,41 @@ insert into fed_state_map values ('DEU-1600', 'SachsenAnhalt');
 insert into fed_state_map values ('DEU-1601', 'Sachsen');
 insert into fed_state_map values ('DEU-1579', 'SchleswigHolstein');
 insert into fed_state_map values ('DEU-1577', 'Thüringen');
+/
+
+create or replace view v_eu_populations as
+select
+    country
+  , year
+  , population
+from gdb_world_population
+where country in (
+    'Österreich',
+    'Belgien',
+    'Bulgarien',
+    'Kroatien',
+    'Zypern',
+    'Tschechische Republik',
+    'Dänemark',
+    'Estland',
+    'Finnland',
+    'Frankreich',
+    'Deutschland',
+    'Ungarn',
+    'Irland',
+    'Italien',
+    'Lettland',
+    'Litauen',
+    'Luxemburg',
+    'Malta',
+    'Niederlande',
+    'Polen',
+    'Portugal',
+    'Rumänien',
+    'Slowakei',
+    'Slowenien',
+    'Spanien',
+    'Schweden',
+    'Vereinigtes Königreich'
+);
+/
