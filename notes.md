@@ -59,3 +59,37 @@ loop
 end loop;
 end;
 ```
+
+## EU Countries
+
+English          | Non-english
+---              | ---
+Austria          | Österreich
+Belgium          | Belgien
+Bulgaria         | Bulgarien
+Croatia          | Kroatien
+Cyprus           | Zypern
+Czech Republic   | Tschechische Republik
+Denmark          | Dänemark
+Estonia          | Estland
+Finland          | Finnland
+France           | Frankreich
+Germany          | Deutschland
+Hungary          | Ungarn
+Ireland          | Irland
+Italy            | Italien
+Latvia           | Lettland
+Lithuania        | Litauen
+Luxembourg       | Luxemburg
+Malta            | Malta
+Netherlands      | Niederlande
+Poland           | Polen
+Portugal         | Portugal
+Romania          | Rumänien
+Slovakia         | Slowakei
+Slovenia         | Slowenien
+Spain            | Spanien
+Sweden           | Schweden
+United Kingdom   | Vereinigtes Königreich
+
+source: http://europa.eu/about-eu/countries/index_en.htm
