@@ -83,7 +83,7 @@ select
     , code adm1_code
     , gender
     , gender_population population
-
+    , population state_total_population
 from
     gdb_ger_fs_population population
     join fed_state_map state_code on (state_code.state_name = population.federal_state)
