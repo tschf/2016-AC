@@ -84,6 +84,7 @@ select
     , gender
     , gender_population population
     , population state_total_population
+    , round((gender_population/population)*100,2) percentage_of_state
 from
     gdb_ger_fs_population population
     join fed_state_map state_code on (state_code.state_name = population.federal_state)
