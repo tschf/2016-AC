@@ -94,3 +94,8 @@ United Kingdom   | Vereinigtes Königreich
 
 sources: http://europa.eu/about-eu/countries/index_en.htm
 http://www.nationsonline.org/oneworld/countrynames_german.htm
+
+## Legend Positioning
+
+Make map container the same with as the svg; Set the margin to 0 auto.
+Make legend div a sibling (below) the svg. Set width to 200; and margin-right to 0.
