@@ -92,4 +92,5 @@ Spain            | Spanien
 Sweden           | Schweden
 United Kingdom   | Vereinigtes Königreich
 
-source: http://europa.eu/about-eu/countries/index_en.htm
+sources: http://europa.eu/about-eu/countries/index_en.htm
+http://www.nationsonline.org/oneworld/countrynames_german.htm
