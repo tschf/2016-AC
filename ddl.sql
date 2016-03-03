@@ -76,9 +76,17 @@ where country in
 );
 /
 
-create or replace view v_germany_gender_disparity as
-select year, federal_state, gender, gender_population, population population_total
-from gdb_ger_fs_population
+create or replace view v_germany_gender_population as
+select
+      year
+    , federal_state
+    , code adm1_code
+    , gender
+    , gender_population population
+
+from
+    gdb_ger_fs_population population
+    join fed_state_map state_code on (state_code.state_name = population.federal_state)
 unpivot (
     gender_population for gender in (gender_men as 'Male', gender_woman as 'Female')
 );
