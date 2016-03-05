@@ -32,6 +32,7 @@ where country in (
     'Österreich',
     'Belgien',
     'Bulgarien',
+    'Deutschland',
     'Kroatien',
     'Zypern',
     'Tschechische Republik',
