@@ -1,25 +1,48 @@
 create table fed_state_map(
-    CODE VARCHAR2(8) PRIMARY KEY,
+    ID NUMBER PRIMARY KEY,
+    ADM1_CODE VARCHAR2(8) NOT NULL,
     STATE_NAME VARCHAR2(30) NOT NULL
 );
 /
 
-insert into fed_state_map values ('DEU-1573', 'BadenWürttemberg');
-insert into fed_state_map values ('DEU-1591', 'Bayern');
-insert into fed_state_map values ('DEU-1599', 'Berlin');
-insert into fed_state_map values ('DEU-3487', 'Brandenburg');
-insert into fed_state_map values ('DEU-1575', 'Bremen');
-insert into fed_state_map values ('DEU-1578', 'Hamburg');
-insert into fed_state_map values ('DEU-1574', 'Hessen');
-insert into fed_state_map values ('DEU-3488', 'MecklenburgVorpommern');
-insert into fed_state_map values ('DEU-1576', 'Niedersachsen');
-insert into fed_state_map values ('DEU-1572', 'NordrheinWestfalen');
-insert into fed_state_map values ('DEU-1580', 'RheinlandPfalz');
-insert into fed_state_map values ('DEU-1581', 'Saarland');
-insert into fed_state_map values ('DEU-1600', 'SachsenAnhalt');
-insert into fed_state_map values ('DEU-1601', 'Sachsen');
-insert into fed_state_map values ('DEU-1579', 'SchleswigHolstein');
-insert into fed_state_map values ('DEU-1577', 'Thüringen');
+alter table fed_state_map
+add constraint "FED_STATE_MAP_UK1" UNIQUE ("ADM1_CODE", "STATE_NAME");
+/
+
+create sequence fed_state_map_seq;
+/
+
+create or replace trigger BI_FED_STATE_MAP
+before insert on FED_STATE_MAP
+for each row
+begin
+    :NEW.ID := fed_state_map_seq.nextval;
+end BI_FED_STATE_MAP;
+/
+
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1573', 'BadenWürttemberg');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1591', 'Bayern');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1599', 'Berlin');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-3487', 'Brandenburg');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1575', 'Bremen');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1578', 'Hamburg');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1574', 'Hessen');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-3488', 'MecklenburgVorpommern');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1576', 'Niedersachsen');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1572', 'NordrheinWestfalen');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1580', 'RheinlandPfalz');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1581', 'Saarland');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1600', 'SachsenAnhalt');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1601', 'Sachsen');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1579', 'SchleswigHolstein');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1577', 'Thüringen');
+
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1573', 'Baden-Württemberg');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-3488', 'Mecklenburg-Vorpommern');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1572', 'Nordrhein-Westfalen');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1580', 'Rheinland-Pfalz');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1600', 'Sachsen-Anhalt');
+insert into fed_state_map (adm1_code, state_name) values ('DEU-1579', 'Schleswig-Holstein');
 /
 
 create or replace view v_eu_populations as
@@ -81,7 +104,7 @@ create or replace view v_germany_gender_population as
 select
       year
     , federal_state
-    , code adm1_code
+    , adm1_code
     , gender
     , gender_population population
     , population state_total_population
@@ -98,7 +121,7 @@ create or replace view v_germany_population as
 select
     population.year
   , population.federal_state
-  , state_code.code adm1_code
+  , state_code.adm1_code
   , population.population
 
 from
@@ -109,7 +132,7 @@ from
 create or replace view v_germany_projected_population as
 select
     federal_state
-  , code adm1_code
+  , adm1_code
   , projection_year
   , year_population
 from
