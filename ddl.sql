@@ -93,3 +93,15 @@ unpivot (
     gender_population for gender in (gender_men as 'Male', gender_woman as 'Female')
 );
 /
+
+create or replace view v_germany_population as
+select
+    population.year
+  , population.federal_state
+  , state_code.code adm1_code
+  , population.population
+
+from
+    gdb_ger_fs_population population
+    join fed_state_map state_code on (state_code.state_name = population.federal_state);
+/
