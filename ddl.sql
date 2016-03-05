@@ -107,8 +107,14 @@ from
 /
 
 create or replace view v_germany_projected_population as
-select federal_state, projection_year, year_population
-from gdb_ger_fs_population_future
+select
+    federal_state
+  , code adm1_code
+  , projection_year
+  , year_population
+from
+    gdb_ger_fs_population_future population
+    join fed_state_map state_code on (state_code.state_name = population.federal_state)
 unpivot (
     year_population for projection_year in (
         YEAR_2015 as '2015',
