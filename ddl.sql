@@ -50,6 +50,59 @@ insert into fed_state_map (adm1_code, state_name) values ('DEU-1600', 'Sachsen-A
 insert into fed_state_map (adm1_code, state_name) values ('DEU-1579', 'Schleswig-Holstein');
 /
 
+
+
+create table species_simplification (
+    ID NUMBER PRIMARY KEY
+  , simplified_name varchar2(25) not null
+  , original_name varchar2(100) not null
+);
+/
+
+create sequence species_simplification_Seq;
+/
+
+create or replace trigger BI_SPECIES_SIMPLIFICATION
+before insert on species_simplification
+for each row
+begin
+    :NEW.ID := species_simplification_Seq.nextval;
+end BI_SPECIES_SIMPLIFICATION;
+/
+
+alter table species_simplification
+add constraint "SPECIES_SIMPLIFICATION_UK1" UNIQUE ("SIMPLIFIED_NAME", "ORIGINAL_NAME");
+/
+
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Bovine 1 bu2 J., female, livestock u.Zuchttiere');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Bovine 2 Juälter, heifers and as breeding. Livestock');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Bovine 2 years and older, bulls and bullocks');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Bovine 2 years and over, dairy cows');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Bovine 2 years and over, heifers for slaughter');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Bovine 2 years and over, other cows');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Calves through 8 months');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Cattle 1 to u. 2 years, female, for slaughter');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Cattle between 1 and 2 years, male gender');
+insert into species_simplification (simplified_name, original_name) values ('Poultry', 'Duck');
+insert into species_simplification (simplified_name, original_name) values ('Pig', 'Fattening pigs from 50 to less than 80 kilograms live weight');
+insert into species_simplification (simplified_name, original_name) values ('Pig', 'Fattening pigs from 80 to less than 110 kilograms live weight');
+insert into species_simplification (simplified_name, original_name) values ('Sheep', 'Female sheep for breeding');
+insert into species_simplification (simplified_name, original_name) values ('Poultry', 'Geese');
+insert into species_simplification (simplified_name, original_name) values ('Goat', 'Goats, female');
+insert into species_simplification (simplified_name, original_name) values ('Goat', 'Goats, male');
+insert into species_simplification (simplified_name, original_name) values ('Poultry', 'Laying hens 1/2 year old and older');
+insert into species_simplification (simplified_name, original_name) values ('Sheep', 'Other sheep');
+insert into species_simplification (simplified_name, original_name) values ('Pig', 'Piglet');
+insert into species_simplification (simplified_name, original_name) values ('Pig', 'Porkers 110 and more kilograms live weight');
+insert into species_simplification (simplified_name, original_name) values ('Poultry', 'Pullets under 1/2 year old');
+insert into species_simplification (simplified_name, original_name) values ('Sheep', 'Sheep under 1 year old');
+insert into species_simplification (simplified_name, original_name) values ('Poultry', 'Slaughter u. Broilers and all taps');
+insert into species_simplification (simplified_name, original_name) values ('Poultry', 'Turkeys');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Young cattle over 8 months to 1 year old, male');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Young cattle over 8 months to 1 year, female');
+insert into species_simplification (simplified_name, original_name) values ('Pig', 'Young pigs less than 50 kg live weight, excluding piglet');
+/
+
 create or replace view v_eu_populations as
 select
     country
@@ -197,4 +250,18 @@ unpivot include nulls (
         year_2015 as '2015'
     )
 );
+/
+
+create or replace view v_germany_animal_farmin_simpl as
+select
+    raw_data.federal_state
+  , species_simplification.simplified_name species
+  , raw_data.farming_year
+  , sum(coalesce(raw_data.amount_farmed, 0)) amount_farmed
+from
+    v_germany_animal_farming raw_data
+    join species_simplification on (raw_data.species = species_simplification.original_name)
+group by     raw_data.federal_state
+  , species_simplification.simplified_name
+  , raw_data.farming_year;
 /
