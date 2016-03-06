@@ -1,0 +1,49 @@
+#mapContainer {
+    text-align: center;
+    width: 960px;
+    margin: 0 auto;
+}
+
+svg {
+
+    stroke: white;
+    stroke-width: 0.2px;
+}
+
+.bold { font-weight: bold; }
+
+#legend {
+  width: 200px;
+  height: 25px;
+  text-align: left;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.flexBox {
+    display: flex;
+}
+
+.area {
+    width: 20px;
+    height:23px;
+}
+
+.ui-tooltip {
+    white-space: pre-line;
+}
+.rightAligned {
+
+    float: right;
+}
+
+.heat10 { background-color: rgba(177, 23, 23, 0.1); }
+.heat20 { background-color: rgba(177, 23, 23, 0.2); }
+.heat30 { background-color: rgba(177, 23, 23, 0.3); }
+.heat40 { background-color: rgba(177, 23, 23, 0.4); }
+.heat50 { background-color: rgba(177, 23, 23, 0.5); }
+.heat60 { background-color: rgba(177, 23, 23, 0.6); }
+.heat70 { background-color: rgba(177, 23, 23, 0.7); }
+.heat80 { background-color: rgba(177, 23, 23, 0.8); }
+.heat90 { background-color: rgba(177, 23, 23, 0.9); }
+.heat100 { background-color: rgba(177, 23, 23, 1);  }
