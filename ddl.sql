@@ -232,10 +232,13 @@ where population_by_gender = 'total';
 create or replace view v_germany_animal_farming as
 select
     federal_state
+  , adm1_code
   , trim(species) species
   , farming_year
   , amount_farmed
-from gdb_ger_fs_animal_farming
+from
+    gdb_ger_fs_animal_farming farming
+    join fed_state_map state_code on (state_code.state_name = farming.federal_state)
 unpivot include nulls (
     amount_farmed for farming_year in (
         year_2006 as '2006',
@@ -255,13 +258,16 @@ unpivot include nulls (
 create or replace view v_germany_animal_farmin_simpl as
 select
     raw_data.federal_state
+  , raw_data.adm1_code
   , species_simplification.simplified_name species
   , raw_data.farming_year
   , sum(coalesce(raw_data.amount_farmed, 0)) amount_farmed
 from
     v_germany_animal_farming raw_data
     join species_simplification on (raw_data.species = species_simplification.original_name)
-group by     raw_data.federal_state
+group by
+    raw_data.federal_state
+  , raw_data.adm1_code
   , species_simplification.simplified_name
   , raw_data.farming_year;
 /
