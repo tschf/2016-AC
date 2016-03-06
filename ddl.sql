@@ -175,3 +175,26 @@ unpivot (
 )
 where population_by_gender = 'total';
 /
+
+create or replace view v_germany_animal_farming as
+select
+    federal_state
+  , trim(species) species
+  , farming_year
+  , amount_farmed
+from gdb_ger_fs_animal_farming
+unpivot include nulls (
+    amount_farmed for farming_year in (
+        year_2006 as '2006',
+        year_2007 as '2007',
+        year_2008 as '2008',
+        year_2009 as '2009',
+        year_2010 as '2010',
+        year_2011 as '2011',
+        year_2012 as '2012',
+        year_2013 as '2013',
+        year_2014 as '2014',
+        year_2015 as '2015'
+    )
+);
+/
