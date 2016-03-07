@@ -226,7 +226,7 @@ unpivot (
         YEAR_2040 as '2040'
     )
 )
-where population_by_gender = 'total';
+where population_by_gender in ('total','Insgesamt');
 /
 
 create or replace view v_germany_animal_farming as
