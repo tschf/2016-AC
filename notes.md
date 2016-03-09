@@ -40,28 +40,6 @@ Then, we want to convert this into a topojson file:
 topojson -o output.json --id-property adm1_code --properties name=name -- states.json
 ```
 
-## CSS Generator for HeatMap
-
-```plsql
-begin
-
-for i in (
-with population_data as (
-    select population, fed_state_map.code, max(population) over (order by 1) max_pop
-    from gdb_ger_fs_population
-    join fed_state_map on (fed_state_map.state_name = gdb_ger_fs_population.federal_state)
-    where year = 2014
-    order by population desc
-)
-select population_data.code, round(1-(max_pop-population)/max_pop,2) opacity
-from population_data
-)
-loop
-    dbms_output.put_line('.' || i.code || ' { fill: rgba(177,23,23,' || i.opacity || '); }');
-end loop;
-end;
-```
-
 ## EU Countries
 
 English          | Non-english
@@ -96,8 +74,3 @@ United Kingdom   | Vereinigtes Königreich
 
 sources: http://europa.eu/about-eu/countries/index_en.htm
 http://www.nationsonline.org/oneworld/countrynames_german.htm
-
-## Legend Positioning
-
-Make map container the same with as the svg; Set the margin to 0 auto.
-Make legend div a sibling (below) the svg. Set width to 200; and margin-right to 0.
