@@ -74,6 +74,7 @@ alter table species_simplification
 add constraint "SPECIES_SIMPLIFICATION_UK1" UNIQUE ("SIMPLIFIED_NAME", "ORIGINAL_NAME");
 /
 
+--English
 insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Bovine 1 bu2 J., female, livestock u.Zuchttiere');
 insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Bovine 2 Juälter, heifers and as breeding. Livestock');
 insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Bovine 2 years and older, bulls and bullocks');
@@ -101,6 +102,35 @@ insert into species_simplification (simplified_name, original_name) values ('Pou
 insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Young cattle over 8 months to 1 year old, male');
 insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Young cattle over 8 months to 1 year, female');
 insert into species_simplification (simplified_name, original_name) values ('Pig', 'Young pigs less than 50 kg live weight, excluding piglet');
+
+--German
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Rinder 1 b.u.2 J., weiblich, Nutz- u.Zuchttiere');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Rinder 2 J.u.älter, Färsen als Zucht- u. Nutztiere');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Rinder 2 Jahre und älter, Bullen und Ochsen');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Rinder 2 Jahre und älter, Milchkühe');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Rinder 2 Jahre und älter, Färsen zum Schlachten');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Rinder 2 Jahre und älter, andere Kühe');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Kälber bis einschließlich 8 Monate');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Rinder 1 bis u. 2 Jahre, weiblich, zum Schlachten');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Rinder 1 bis unter 2 Jahre, männlich');
+insert into species_simplification (simplified_name, original_name) values ('Poultry', 'Enten');
+insert into species_simplification (simplified_name, original_name) values ('Pig', 'Mastschweine 50 bis unter 80 kg Lebendgewicht');
+insert into species_simplification (simplified_name, original_name) values ('Pig', 'Mastschweine 80 bis unter 110 kg Lebendgewicht');
+insert into species_simplification (simplified_name, original_name) values ('Sheep', 'Weibliche Schafe zur Zucht');
+insert into species_simplification (simplified_name, original_name) values ('Poultry', 'Gänse');
+insert into species_simplification (simplified_name, original_name) values ('Goat', 'Ziegen, weiblich');
+insert into species_simplification (simplified_name, original_name) values ('Goat', 'Ziegen, männlich');
+insert into species_simplification (simplified_name, original_name) values ('Poultry', 'Legehennen 1/2 Jahr und älter');
+insert into species_simplification (simplified_name, original_name) values ('Sheep', 'Andere Schafe');
+insert into species_simplification (simplified_name, original_name) values ('Pig', 'Ferkel');
+insert into species_simplification (simplified_name, original_name) values ('Pig', 'Mastschweine 110 und mehr kg Lebendgewicht');
+insert into species_simplification (simplified_name, original_name) values ('Poultry', 'Junghennen unter 1/2 Jahr alt');
+insert into species_simplification (simplified_name, original_name) values ('Sheep', 'Schafe unter 1 Jahr alt');
+insert into species_simplification (simplified_name, original_name) values ('Poultry', 'Schlacht- u. Masthühner sowie sämtliche Hähne');
+insert into species_simplification (simplified_name, original_name) values ('Poultry', 'Truthühner');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Jungrinder über 8 Monate bis 1 Jahr, männlich');
+insert into species_simplification (simplified_name, original_name) values ('Bovine', 'Jungrinder über 8 Monate bis 1 Jahr, weiblich');
+insert into species_simplification (simplified_name, original_name) values ('Pig', 'Jungschweine unter 50 kg Lebendgewicht,ohne Ferkel');
 /
 
 create or replace view v_eu_populations as
