@@ -47,3 +47,37 @@ svg {
 .heat80 { background-color: rgba(177, 23, 23, 0.8); }
 .heat90 { background-color: rgba(177, 23, 23, 0.9); }
 .heat100 { background-color: rgba(177, 23, 23, 1);  }
+
+/*
+evenly spaced LI's adapted from: http://stackoverflow.com/questions/5060923/how-to-stretch-html-css-horizontal-navigation-items-evenly-and-fully-across-a
+*/
+
+#timeline {
+    text-align: justify;
+    border-bottom:dashed 3px red;
+    height:30px;
+
+}
+
+#timeline:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+}
+
+#timeline li {
+    display: inline-block;
+    height: 30px;
+    background: url('circle_8x8.png') center bottom no-repeat;
+}
+
+#timeline li.active {
+    height:35px;
+    background: url('circle_16x16.png') center bottom no-repeat;
+}
+
+#timeline li.active a {
+    font-weight:bold;
+    font-size: 1.5em;
+    height: 30px;
+}
