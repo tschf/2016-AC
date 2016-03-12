@@ -35,7 +35,7 @@ insert into fed_state_map (adm1_code, state_name) values ('DEU-1574', 'Hessen');
 insert into fed_state_map (adm1_code, state_name, preferred_spelling) values ('DEU-3488', 'MecklenburgVorpommern', 'N');
 insert into fed_state_map (adm1_code, state_name) values ('DEU-1576', 'Niedersachsen');
 insert into fed_state_map (adm1_code, state_name, preferred_spelling) values ('DEU-1572', 'NordrheinWestfalen', 'N');
-insert into fed_state_map (adm1_code, state_name) values ('DEU-1580', 'RheinlandPfalz', 'N');
+insert into fed_state_map (adm1_code, state_name, preferred_spelling) values ('DEU-1580', 'RheinlandPfalz', 'N');
 insert into fed_state_map (adm1_code, state_name) values ('DEU-1581', 'Saarland');
 insert into fed_state_map (adm1_code, state_name, preferred_spelling) values ('DEU-1600', 'SachsenAnhalt', 'N');
 insert into fed_state_map (adm1_code, state_name) values ('DEU-1601', 'Sachsen');
