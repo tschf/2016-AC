@@ -62,32 +62,29 @@ svg {
 evenly spaced LI's adapted from: http://stackoverflow.com/questions/5060923/how-to-stretch-html-css-horizontal-navigation-items-evenly-and-fully-across-a
 */
 
-#timeline {
+#timelinePoints {
     text-align: justify;
-    border-bottom:dashed 3px red;
-    height:30px;
-
+    height: 40px;
+    background: url('dash_18x3.png') left 27.5px repeat-x;
 }
 
-#timeline:after {
+#timelinePoints:after {
     content: '';
     display: inline-block;
     width: 100%;
 }
 
-#timeline li {
+#timelinePoints li {
     display: inline-block;
-    height: 30px;
+    height: 33px;
     background: url('circle_8x8.png') center bottom no-repeat;
 }
 
-#timeline li.active {
-    height:35px;
+#timelinePoints li.active {
+    height:37px;
     background: url('circle_16x16.png') center bottom no-repeat;
 }
 
-#timeline li.active a {
+#timelinePoints li.active a {
     font-weight:bold;
-    font-size: 1.5em;
-    height: 30px;
 }
