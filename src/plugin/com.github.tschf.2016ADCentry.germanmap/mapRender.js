@@ -14,9 +14,23 @@ var germanMapRenderer = {
         var path = d3.geo.path()
             .projection(projection);
 
+        //pull heights of all page components, to assign an appropriate height for the map region
+        var headerHeight = apex.jQuery('.t-Header-navBar').outerHeight(true);
+        var timelineHeaderHeight = apex.jQuery('#mapTimeline h4').outerHeight(true);
+        var timelinePointsHeight = apex.jQuery('#mapTimeline #timelinePoints').outerHeight(true);
+
+        var legendHeaderHeight = apex.jQuery('#legend h4').outerHeight(true);
+        var legendColourGrid = apex.jQuery('#legend #colourGrid').outerHeight(true);
+        var legendCaption = apex.jQuery('#legend #colourGridCaption').outerHeight(true);
+
+        //buffer so the legend isn't right on the page border
+        var buffer = 30;
+
+        //figure out the height to make the map so it fits on the page
+        var computedHeight = apex.jQuery(window).height()-headerHeight-timelineHeaderHeight-timelinePointsHeight-legendHeaderHeight-legendColourGrid-legendCaption-buffer;
+
         var svg = d3.select("#germanMap")
-            .attr("width", width)
-            .attr("height", height);
+            .attr("height", computedHeight);
 
         d3.json(pluginFilePrefix + "de.json", function(error, de) {
 
@@ -46,12 +60,12 @@ var germanMapRenderer = {
 
     registerChangeTime: function registerChangeTime(ajaxIdentifier, red, green, blue){
 
-        apex.jQuery('#timeline li').click(function(){
+        apex.jQuery('#timelinePoints li').click(function(){
 
             var $period = apex.jQuery(this);
             var clickedTimePeriodYear = apex.jQuery(this).text();
 
-            $('#timeline li').removeClass('active');
+            $('#timelinePoints li').removeClass('active');
             $period.addClass('active');
 
             germanMapRenderer.updateMapPopulationDisplay(ajaxIdentifier, clickedTimePeriodYear, red, green, blue);
@@ -63,6 +77,7 @@ var germanMapRenderer = {
     },
 
     updateMapPopulationDisplay: function updateMapPopulationDisplay(ajaxIdentifier, year, red, green, blue){
+
         apex.server.plugin(
             ajaxIdentifier,
             {
@@ -71,6 +86,7 @@ var germanMapRenderer = {
             {
                 dataType: 'json',
                 success: function(statePcts) {
+
                     for (state in statePcts){
 
                         //Format the number with spacing for every 3 digits
