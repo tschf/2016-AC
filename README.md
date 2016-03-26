@@ -43,3 +43,17 @@ Applicable license agreement for these two libraries:
 >EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The underlying data used to render the German map was sourced from http://www.naturalearthdata.com/. Specifically, the `10m Admin 1 - States, Provinces` data collection. The data is stated as being in the public domain: http://www.naturalearthdata.com/about/terms-of-use/
+
+The data is a shape file, which needs to be converted into a format that d3 and more specifically topoJSON can understand. The is a two part process. Using the command `ogr2ogr` to get the file in a GeoJSON format.
+
+```bash
+ogr2ogr -f GeoJSON -where "ADM0_A3 = 'DEU'" states.json ne_10m_admin_1_states_provinces.shp
+```
+
+This outputs a GeoJSON file named `states.json`. The next step is to convert this into a topoJSON file. In this command we can limit the data to include only data fields we care about, namely the `id` property being the adm1_code and the name of the state (which is a small subset of what's available in the shape file).
+
+```bash
+topojson -o de.json --id-property adm1_code --properties name=name -- states.json
+```
+
+This produces the final data file we will use containing all necessary data points to draw the German map with the topojson library.
