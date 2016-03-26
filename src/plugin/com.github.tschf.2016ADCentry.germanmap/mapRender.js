@@ -4,12 +4,10 @@ var germanMapRenderer = {
     height: 750,
     scale: 500,
 
-    setUpMap: function setUpMap(width, height, pluginFilePrefix, ajaxIdentifier, initialYear, red, green, blue){
+    setUpMap: function setUpMap(pluginFilePrefix, ajaxIdentifier, initialYear, red, green, blue){
 
         var projection = d3.geo.mercator()
-            //.center([10.5, 51.35])
-            .scale(500)
-            .translate([width / 2, height / 2]);
+            .scale(500);
 
         var path = d3.geo.path()
             .projection(projection);
@@ -45,8 +43,8 @@ var germanMapRenderer = {
 
             germanMapRenderer.updateMapPopulationDisplay(ajaxIdentifier, initialYear, red, green, blue);
 
-            var generatedChart = document.getElementsByTagName("svg")[0];
-
+            //trim spacing around the svg/map
+            var generatedChart = document.querySelector("svg#germanMap");
             var bbox = generatedChart.getBBox();
             var viewBox = [bbox.x, bbox.y, bbox.width, bbox.height].join(" ");
             generatedChart.setAttribute("viewBox", viewBox);
