@@ -1,5 +1,46 @@
 # 2016 APEX Dashboard Competition
 
+Entry by Trent Schafer
+
+Demo: todo
+
+## Installation
+
+This application assumes the availability of the data for this competition is already installed in the parsing schema.
+
+To install, simply import the application in the root of this project, `f103.sql`.
+
+## Running
+
+The main page for this application is page 1, which you should be taken to upon running the application.
+
+Initially, you will be presented with the German map coloured to indicate the number of people living in that state in relation to the most populated state.
+
+`img here`
+
+You can click on a state to get a deeper analysis of that particular state.
+
+`img here`
+
+## High level application design
+
+The map is encapsulated into a plugin named `Map of Germany`, which includes the components:
+
+* timeline
+* map
+* population density legend
+
+On page load, some collections are created in before header processes.
+
+1. FED_STATE_MAP - Creating an assignment of a state name to a code value. Specifically, adm1_code which is unique for each state and extracted from the shape file from the naturalearthdata.com data feed.
+* GERMANY_POPULATION_HISTORY - To avoid re-typing the same query, loading the population data into a collection.
+* SPECIES_SIMPLIFIED - I felt the number of different species that are farmed is too large to display in a single chart, so have simplified the potential species, reducing it to 5 species.
+* FARMING_SUMMARY - To avoid re-typing the same query, loading the farming data into a collection.
+
+On the map page, there is a time line so you can refocus the data to the clicked on year. After changing the year and viewing the graphs, the population history will only show up to that year. After going back to an earlier year, the projected population will still begin from the same period - as I figured the user would still want the projection graph still only to be from projected data and not historical data.
+
+When displaying the charts, I wanted to include a summary statement about the state/year/information being displayed. I've put this into an AJAX callback (application process) named `GET_SUMMARY`. I went this route instead of a `Set Value` action due to the size limitation of the `Set Value` PL/SQL text area.
+
 ## Third party resources
 
 ### Logo
