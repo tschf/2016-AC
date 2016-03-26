@@ -40,18 +40,6 @@ svg#germanMap {
     float: right;
 }
 
-/* Heat map legend in 10% increments upto no transparency */
-.heat10 { background-color: rgba(177, 23, 23, 0.1); }
-.heat20 { background-color: rgba(177, 23, 23, 0.2); }
-.heat30 { background-color: rgba(177, 23, 23, 0.3); }
-.heat40 { background-color: rgba(177, 23, 23, 0.4); }
-.heat50 { background-color: rgba(177, 23, 23, 0.5); }
-.heat60 { background-color: rgba(177, 23, 23, 0.6); }
-.heat70 { background-color: rgba(177, 23, 23, 0.7); }
-.heat80 { background-color: rgba(177, 23, 23, 0.8); }
-.heat90 { background-color: rgba(177, 23, 23, 0.9); }
-.heat100 { background-color: rgba(177, 23, 23, 1);  }
-
 .germanState {
     cursor: pointer;
 }
