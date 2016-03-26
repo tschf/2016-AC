@@ -1,4 +1,4 @@
-# 2016ADCentry - 2016 APEX Dashboard Competition
+# 2016 APEX Dashboard Competition
 
 ## Third party resources
 
