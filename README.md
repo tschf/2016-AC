@@ -16,11 +16,11 @@ The main page for this application is page 1, which you should be taken to upon 
 
 Initially, you will be presented with the German map coloured to indicate the number of people living in that state in relation to the most populated state.
 
-`img here`
+![image](https://cloud.githubusercontent.com/assets/1747643/14064974/90d1adde-f462-11e5-9f97-53b3c7970caa.png)
 
 You can click on a state to get a deeper analysis of that particular state.
 
-`img here`
+![image](https://cloud.githubusercontent.com/assets/1747643/14064980/b2d16dd4-f462-11e5-9412-52e5109a2daa.png)
 
 ## High level application design
 
