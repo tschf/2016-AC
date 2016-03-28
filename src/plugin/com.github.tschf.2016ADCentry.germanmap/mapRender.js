@@ -1,9 +1,5 @@
 var germanMapRenderer = {
 
-    width: 960,
-    height: 750,
-    scale: 500,
-
     setUpMap: function setUpMap(pluginFilePrefix, ajaxIdentifier, initialYear, red, green, blue){
 
         var projection = d3.geo.mercator()
