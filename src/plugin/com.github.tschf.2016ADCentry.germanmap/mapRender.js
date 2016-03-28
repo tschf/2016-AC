@@ -21,11 +21,18 @@ var germanMapRenderer = {
         var buffer = 30;
 
         //figure out the height to make the map so it fits on the page
-        var computedHeight = apex.jQuery(window).height()-headerHeight-timelineHeaderHeight-timelinePointsHeight-legendHeaderHeight-legendColourGrid-legendCaption-buffer;
+        var computedHeight = apex.jQuery(window).height()
+            -headerHeight
+            -timelineHeaderHeight
+            -timelinePointsHeight
+            -legendHeaderHeight
+            -legendColourGrid
+            -legendCaption-buffer;
 
         var svg = d3.select("#germanMap")
             .attr("height", computedHeight);
 
+        //draw the map from topojson file
         d3.json(pluginFilePrefix + "de.json", function(error, de) {
 
             var states = topojson.feature(de, de.objects.states);
