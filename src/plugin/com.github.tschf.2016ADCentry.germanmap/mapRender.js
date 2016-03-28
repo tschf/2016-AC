@@ -56,7 +56,7 @@ var germanMapRenderer = {
     },
 
     onClickState: function clickedState(d){
-        apex.event.trigger(document, 'showstateinfo', {adm1_code: d.id});
+        apex.event.trigger(document, 'gsm_showstateinfo', {adm1_code: d.id});
     },
 
     registerChangeTime: function registerChangeTime(ajaxIdentifier, red, green, blue){
