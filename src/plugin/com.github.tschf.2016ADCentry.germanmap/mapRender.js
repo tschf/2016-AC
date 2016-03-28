@@ -76,6 +76,7 @@ var germanMapRenderer = {
 
     updateMapPopulationDisplay: function updateMapPopulationDisplay(ajaxIdentifier, year, red, green, blue){
 
+        var throbber = apex.util.showSpinner();
         apex.server.plugin(
             ajaxIdentifier,
             {
@@ -99,9 +100,13 @@ var germanMapRenderer = {
                             .attr('style', 'fill: rgba(' + red + ','+ green +','+ blue +',' + statePcts[state].pctOfMax + ')')
                             .attr('title', '<span class="bold">'
                                 + statePcts[state].stateName
-                                + '\nPopulation:</span> '
+                                + '\nYear:</span> '
+                                + statePcts[state].year
+                                + '\n<span class="bold">Population:</span> '
                                 + formattedPopulation
                                 + '\nClick for more info...');//Map region switched with charts)
+
+                        throbber.remove();
                     }
                 }
             }
