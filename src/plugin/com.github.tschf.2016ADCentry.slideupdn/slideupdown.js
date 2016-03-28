@@ -1,18 +1,16 @@
 var slideupdown = {
 
-    duration: 800,
-
-    slideUp: function slideUp(upSelector, completeCallback) {
+    slideUp: function slideUp(upSelector, duration, completeCallback) {
         $(upSelector).slideUp({
-            duration: this.duration,
+            duration: duration,
             complete: completeCallback
         });
     },
 
-    slideDown: function slideDown(downSelector){
+    slideDown: function slideDown(downSelector, duration){
         $(downSelector).slideDown({
-            duration: this.duration
-        })
+            duration: duration
+        });
     }
 
 }
