@@ -9,7 +9,7 @@ var germanMapRenderer = {
             .projection(projection);
 
         //pull heights of all page components, to assign an appropriate height for the map region
-        var headerHeight = apex.jQuery('.t-Header-navBar').outerHeight(true);
+        var headerHeight = apex.jQuery('.t-Header-navBar').outerHeight(true);//assumes UT
         var timelineHeaderHeight = apex.jQuery('#mapTimeline h4').outerHeight(true);
         var timelinePointsHeight = apex.jQuery('#mapTimeline #timelinePoints').outerHeight(true);
 
