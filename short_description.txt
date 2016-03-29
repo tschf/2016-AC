@@ -3,6 +3,7 @@
 Title: Germany State Analysis
 Author: Trent Schafer
 Licence: MIT
+App Export: f103.sql
 GitHub repository: https://github.com/tschf/2016ADCEntry
 
 Description: This application uses D3JS and topoJSON libraries to render a map of Germany. These third party libraries for the rendering of the map are both encapsulated in the plugin "Map of Germany". The input file that topoJSON uses was sourced from naturalearthdata.com and converted to a topoJSON file using some utilities on my system (ogr2ogr and topojson).
