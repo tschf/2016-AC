@@ -27,7 +27,7 @@ prompt APPLICATION 103 - Dashboard
 -- Application Export:
 --   Application:     103
 --   Name:            Dashboard
---   Date and Time:   06:47 Monday March 28, 2016
+--   Date and Time:   20:58 Monday March 28, 2016
 --   Exported By:     TRENT
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -107,7 +107,7 @@ wwv_flow_api.create_flow(
 ,p_rejoin_existing_sessions=>'N'
 ,p_csv_encoding=>'Y'
 ,p_last_updated_by=>'TRENT'
-,p_last_upd_yyyymmddhh24miss=>'20160328064652'
+,p_last_upd_yyyymmddhh24miss=>'20160328205714'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>9
 ,p_ui_type_name => null
@@ -10882,7 +10882,7 @@ wwv_flow_api.create_page(
 ,p_cache_mode=>'NOCACHE'
 ,p_help_text=>'No help is available for this page.'
 ,p_last_updated_by=>'TRENT'
-,p_last_upd_yyyymmddhh24miss=>'20160328055031'
+,p_last_upd_yyyymmddhh24miss=>'20160328205714'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(2478215078114663)
@@ -11272,7 +11272,9 @@ wwv_flow_api.create_flash_chart5(
 ,p_bgtype=>'Trans'
 ,p_grid_gradient_rotation=>0
 ,p_color_scheme=>'6'
+,p_x_axis_title=>'Species'
 ,p_x_axis_label_font=>'Tahoma:10:#000000'
+,p_y_axis_title=>'Number Farmed'
 ,p_y_axis_label_font=>'Tahoma:10:#000000'
 ,p_async_update=>'N'
 , p_names_font=> null
@@ -11281,8 +11283,8 @@ wwv_flow_api.create_flash_chart5(
 ,p_hints_font=>'Tahoma:10:#000000'
 ,p_legend_font=>'::'
 ,p_chart_title_font=>'Tahoma:14:#000000'
-,p_x_axis_title_font=>'::'
-,p_y_axis_title_font=>'::'
+,p_x_axis_title_font=>'Tahoma:10:#000000'
+,p_y_axis_title_font=>'Tahoma:10:#000000'
 ,p_gauge_labels_font=>'::'
 ,p_use_chart_xml=>'N'
 );
