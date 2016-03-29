@@ -27,3 +27,7 @@ The farmed animals chart I had to simplify by species as there were too many spe
 The projected population chart will always begin from the projected data - which will leave a gap if you focus on an earlier year on the time line.
 
 I went with these 4 measures/charts as I wanted the user to be able to see key information about the focused on state, and this seemed the most obvious from the data provided.
+
+Other third party resources:
+
+* Map logo - sourced from: https://github.com/googlei18n/region-flags
