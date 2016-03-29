@@ -1,0 +1,29 @@
+2016 APEX Dashboard Competition
+
+Title: Germany State Analysis
+Author: Trent Schafer
+Licence: MIT
+GitHub repository: https://github.com/tschf/2016ADCEntry
+
+Description: This application uses D3JS and topoJSON libraries to render a map of Germany. These third party libraries for the rendering of the map are both encapsulated in the plugin "Map of Germany". The input file that topoJSON uses was sourced from naturalearthdata.com and converted to a topoJSON file using some utilities on my system (ogr2ogr and topojson).
+
+The colour of the states uses RGB(177,23,23) for the most populated state and then as the states become less populated in relation to the most populated, transparency of that colour becomes higher. The idea behind this is show how the population is spread out across the country.
+
+When hovering your mouse over each state, you will get a tool tip with the state name, the population and the currently focused year.
+
+There is a time line above the map which you can re-focus the year.
+
+Clicking on the state will switch out the regions to show a summary statement highlighting the key facts about the state along with a grid of 4 charts. The switch is done with another plugin ("Slide up/Slide down") which accepts two jQuery selectors with what to slide up (hide) and down (show) respectively.
+
+The 4 charts included are:
+
+1. Population growth
+2. Projected Population
+3. Population breakup between males and females
+4. Farmed animals
+
+The farmed animals chart I had to simplify by species as there were too many species (in my opinion) to display in a single chart - at least for a dashboard.
+
+The projected population chart will always begin from the projected data - which will leave a gap if you focus on an earlier year on the time line.
+
+I went with these 4 measures/charts as I wanted the user to be able to see key information about the focused on state, and this seemed the most obvious from the data provided.
