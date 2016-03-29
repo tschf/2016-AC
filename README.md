@@ -2,7 +2,7 @@
 
 Entry by Trent Schafer
 
-Demo: todo
+Demo: https://apex.oracle.com/pls/apex/f?p=94455
 
 ## Installation
 
@@ -16,11 +16,11 @@ The main page for this application is page 1, which you should be taken to upon 
 
 Initially, you will be presented with the German map coloured to indicate the number of people living in that state in relation to the most populated state.
 
-![image](https://cloud.githubusercontent.com/assets/1747643/14064974/90d1adde-f462-11e5-9f97-53b3c7970caa.png)
+![image](screen1.png)
 
 You can click on a state to get a deeper analysis of that particular state.
 
-![image](https://cloud.githubusercontent.com/assets/1747643/14064980/b2d16dd4-f462-11e5-9412-52e5109a2daa.png)
+![image](screen2.png)
 
 ## High level application design
 
@@ -40,6 +40,33 @@ On page load, some collections are created in before header processes.
 On the map page, there is a time line so you can refocus the data to the clicked on year. After changing the year and viewing the graphs, the population history will only show up to that year. After going back to an earlier year, the projected population will still begin from the same period - as I figured the user would still want the projection graph still only to be from projected data and not historical data.
 
 When displaying the charts, I wanted to include a summary statement about the state/year/information being displayed. I've put this into an AJAX callback (application process) named `GET_SUMMARY`. I went this route instead of a `Set Value` action due to the size limitation of the `Set Value` PL/SQL text area.
+
+### Plugins
+
+#### Map of Germany
+
+This is a region plugin to display the timeline, map and population density (legend). It uses d3js and topoJSON technologies for the actual map rendering.
+
+Events:
+
+* German State Clicked - when you click a state, this event will fire. Sends the `ADM1_CODE` in the event data
+* Timeline time period clicked - when you click a year on the time line above the map, this event will fire. Sends the year clicked in the event data.
+
+Settings:
+
+* Map colour - Allows you to set the dominant colour for the most populated state in Germany (which less populated becoming more transparent versions of that colour).
+* Container width - The width of the containing element of all the map components (timeline, map and population density).
+* Timeline years - how many years to display on the timeline at the top of the page (up to the current maximum recorded history in the database)
+
+#### Slid up/Slide down
+
+This is a dynamic action plugin, used as a hide and show style function. This is designed specifically to hide one region (slide up) and showing another (slide down) - in the case of this application, hide the map and show the charts; and then vice-versa.
+
+Settings:
+
+* jQuery selector to slide up
+* jQuery selector to slide down
+* Slide duration (for each operation, not the total duration for both operations combined) - defaults to 800
 
 ## Third party resources
 
