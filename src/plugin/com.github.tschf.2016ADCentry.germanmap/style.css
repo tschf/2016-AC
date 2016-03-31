@@ -65,13 +65,11 @@ evenly spaced LI's adapted from: http://stackoverflow.com/questions/5060923/how-
     display: inline-block;
     height: 33px;
     background: url('circle_8x8.png') center bottom no-repeat;
+    cursor: pointer;
 }
 
-#timelinePoints li.active {
+#timelinePoints li.active, ul#timelinePoints li:hover {
     height:37px;
     background: url('circle_16x16.png') center bottom no-repeat;
-}
-
-#timelinePoints li.active a {
     font-weight:bold;
 }
