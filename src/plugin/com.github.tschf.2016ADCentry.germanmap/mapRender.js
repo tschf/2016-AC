@@ -1,5 +1,13 @@
 var germanMapRenderer = {
 
+    //event strings as defined in the plugin
+    //use with apex.event.trigger so that DA can be picked up when these occur.
+    events: {
+        stateClicked: "gsm_stateclicked",
+        timepointClicked: "gsm_timeclicked"
+
+    },
+
     setUpMap: function setUpMap(pluginFilePrefix, ajaxIdentifier, initialYear, red, green, blue){
 
         var projection = d3.geo.mercator()
@@ -55,8 +63,35 @@ var germanMapRenderer = {
 
     },
 
+    //Fire event for DA to react to, when the state is clicked
+    //clickSource can be: stateTooltip or state
+    sendStateClicked: function(adm1Code, clickSource){
+
+        //function adapted from: http://stackoverflow.com/a/4819886/3476713
+        //return Bool of if running on a touch device
+        function isTouchDevice() {
+
+            //returns as 1 or 0
+            var _isTouchDevice = 'ontouchstart' in window  // works on most browsers
+                || navigator.maxTouchPoints;              // works on IE10/11 and Surface
+
+            //convert just for easier debugging (showing true/false vs 0/1)
+            return Boolean(_isTouchDevice);
+        };
+
+        apex.event.trigger(
+            document,
+            germanMapRenderer.events.stateClicked,
+            {
+                adm1_code: adm1Code,
+                source: clickSource,
+                isTouchDevice: isTouchDevice()
+            }
+        );
+    },
+
     onClickState: function clickedState(d){
-        apex.event.trigger(document, 'gsm_stateclicked', {adm1_code: d.id});
+        germanMapRenderer.sendStateClicked(d.id, 'state');
     },
 
     registerChangeTime: function registerChangeTime(ajaxIdentifier, red, green, blue){
@@ -72,7 +107,7 @@ var germanMapRenderer = {
             germanMapRenderer.updateMapPopulationDisplay(ajaxIdentifier, clickedTimePeriodYear, red, green, blue);
 
             //Send a DA event should any further logic want to be introduced
-            apex.event.trigger($period, 'gsm_timeclicked', { year: clickedTimePeriodYear });
+            apex.event.trigger($period, germanMapRenderer.events.timepointClicked, { year: clickedTimePeriodYear });
 
         });
     },
@@ -101,13 +136,18 @@ var germanMapRenderer = {
 
                         apex.jQuery('.'+state)
                             .attr('style', 'fill: rgba(' + red + ','+ green +','+ blue +',' + statePcts[state].pctOfMax + ')')
-                            .attr('title', '<span class="bold">'
+                            .attr('title', '<div class="stateTooltipText"'
+                                + 'data-adm1_code="'
+                                + state
+                                + '">'
+                                + '<span class="bold">'
                                 + statePcts[state].stateName
                                 + '\nYear:</span> '
                                 + statePcts[state].year
                                 + '\n<span class="bold">Population:</span> '
                                 + formattedPopulation
-                                + '\nClick for more info...');//Map region switched with charts)
+                                + '\nClick for more info...'
+                                + '</div>');//Map region switched with charts)
 
                         throbber.remove();
                     }
